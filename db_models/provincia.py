@@ -19,7 +19,7 @@ class Provincia(Base):
     __tablename__ =  "PROVINCIA"
     print("entering parameters config")
     engine = create_engine(BBDD_CONNECTION)
-    connection = engine.connect()
+    #connection = engine.connect()
     metadata = MetaData()
     provincia = Table("PROVINCIA", metadata, autoload=True, autoload_with=engine, schema='claim')
     id_not_in_db = Column(Integer, primary_key=True)
