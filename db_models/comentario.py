@@ -11,9 +11,9 @@ from sqlalchemy import Column, Integer, create_engine, MetaData, Table, select,j
 from config_vars import BBDD_CONNECTION
 from datetime import date  
 
-from db_models import reclamo
-from db_models import gestor
-from db_models import usuario
+from reclamo import Reclamo
+from gestor import Gestor
+from usuario import Usuario
 
 Base = declarative_base()
 
@@ -82,15 +82,15 @@ class Comentario(Base):
         """
         j=j = join(
     cls.comen,
-    reclamo.Reclamo.rec,
-    cls.comen.c.rec_id == reclamo.Reclamo.rec.c.rec_id
+    Reclamo.rec,
+    cls.comen.c.rec_id == Reclamo.rec.c.rec_id
 ).join(
-    usuario.Usuario.usuario,
-    reclamo.Reclamo.rec.c.use_id == usuario.Usuario.usuario.c.use_id
+    Usuario.usuario,
+    Reclamo.rec.c.use_id == Usuario.usuario.c.use_id
 ).join(
-    gestor.Gestor.gestor,
-    cls.comen.c.ges_id == gestor.Gestor.gestor.c.ges_id
+    Gestor.gestor,
+    cls.comen.c.ges_id == Gestor.gestor.c.ges_id
 )
         
-        query = select([usuario.Usuario.usuario.c.use_nombre,gestor.Gestor.gestor.c.ges_nombre,reclamo.Reclamo.rec.c.rec_titulo , cls.comen.c.com_texto]).select_from(j).where(cls.comen.c.rec_id == rec_id)
+        query = select([Usuario.usuario.c.use_nombre, Gestor.gestor.c.ges_nombre,Reclamo.rec.c.rec_titulo , cls.comen.c.com_texto]).select_from(j).where(cls.comen.c.rec_id == rec_id)
         return query
