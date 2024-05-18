@@ -21,7 +21,6 @@ class Comentario(Base):
     __tablename__ =  "comentario"
     print("entering parameters config")
     engine = create_engine(BBDD_CONNECTION)
-    connection = engine.connect()
     metadata = MetaData()
     comen = Table("comentario", metadata, autoload=True, autoload_with=engine, schema='claim')
     id_not_in_db = Column(Integer, primary_key=True)
