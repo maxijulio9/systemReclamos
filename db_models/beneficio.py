@@ -10,8 +10,6 @@ from sqlalchemy import Column, Integer, create_engine, MetaData, Table, select,j
 from config_vars import BBDD_CONNECTION
 from datetime import date  
 
-from db_models import nivel
-from db_models import nivel_beneficio
 
 Base = declarative_base()
 
@@ -19,7 +17,7 @@ class Beneficio(Base):
     __tablename__ =  "beneficios"
     print("entering parameters config")
     engine = create_engine(BBDD_CONNECTION)
-    connection = engine.connect()
+    #connection = engine.connect()
     metadata = MetaData()
     bene = Table("beneficios", metadata, autoload=True, autoload_with=engine, schema='claim')
     id_not_in_db = Column(Integer, primary_key=True)
@@ -72,13 +70,3 @@ class Beneficio(Base):
         query = select([cls.bene]).where(cls.bene.c.ben_nombre == ben_nombre)
         return query
         
-    @classmethod
-    def benefit_by_level(cls,*,niv_id):
-        '''
-        beneficio segun nivel id
-        '''
-        j = join(cls.bene,nivel_beneficio.NivelBeneficio.nivelBeneficio,cls.bene.c.ben_id==nivel_beneficio.NivelBeneficio.nivelBeneficio.c.ben_id)
-        
-        query = select([nivel_beneficio.NivelBeneficio.nivelBeneficio.c.ben_id,cls.bene.c.ben_nombre,cls.bene.c.ben_descripcion]).select_from(j).where(nivel_beneficio.NivelBeneficio.nivelBeneficio.c.niv_id==niv_id)
-        
-        return query
