@@ -11,7 +11,7 @@ Data Access Objects for Claims to the goverment
 #### Create database schema
 * [dbscripts](dbscripts.sql)
 
-#### Create the virtual environment
+#### Create the virtual environment(Linux)
 * python3 -m venv ./venv
 
 #### Activate the virtual environment
