@@ -34,7 +34,7 @@ https://csiandal.medium.com/install-oracle-instant-client-on-ubuntu-4ffc8fdfda08
 
 #### To configure the Instant Client
 
-#### windows 
+#### In Windows 
 
 * Create the oracle folder and extract the Instant Client.
 * Create the network folder inside the Instant client folder.
@@ -45,7 +45,7 @@ https://csiandal.medium.com/install-oracle-instant-client-on-ubuntu-4ffc8fdfda08
 
     * Add the directory to environment variables and user variables.
 
-#### linux
+#### In Linux
 
 * Create the /opt/oracle folder and extract the Instant Client.
 * Create the network folder inside the Instant client folder.
@@ -57,12 +57,12 @@ https://csiandal.medium.com/install-oracle-instant-client-on-ubuntu-4ffc8fdfda08
     * export LD_LIBRARY_PATH=/opt/oracle/instantclient_19_22:$LD_LIBRARY_PATH
 
 
-#### make the changes in the config_vars.py file:
+#### Don't forget to make the changes in the config_vars.py file:
 
 * BBDD_CONNECTION = "oracle+cx_oracle://claim:{password}@basededatosii_high/?encoding=UTF-8&nencoding=UTF-8"
-    #### linux
+    #### Linux
 * d = "/opt/oracle/instantclient_19_22"  # version of Instant Client installed
-    #### windows 
+    #### Windows 
 * d = "C:\\oracle\\instantclient_19_22"  # version of Instant Client installed
 
 #### For Oracle Databases Autonomous (instant client)
